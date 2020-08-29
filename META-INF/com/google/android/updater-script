@@ -1,0 +1,24 @@
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("BOOSTING");
+ui_print("boosting");
+ui_print("");
+ui_print("BOOSTING");
+show_progress(0.2, 0);
+ui_print("Installing to System");
+ui_print("");
+ui_print("");
+package_extract_dir("system", "/system");
+show_progress(0.1, 0);
+ui_print("Fixing permissions ...");
+package_extract_file("chotu/fix_permissions", "/tmp/fix_permissions");
+set_perm(0, 0, 0777, "/tmp/fix_permissions");
+run_program("/tmp/fix_permissions");
+ui_print("Unmounting System");
+show_progress(0.0, 0);
+unmount("/system");
+ui_print("");
+ui_print("");
+ui_print("");
+ui_print("fixed :)");
+
+
